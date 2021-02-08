@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <title></title>
+      <!--<link rel="stylesheet" href="/static/css/styles.css"> -->
+      <link rel="stylesheet" href="../static/css/styles.css">
+
+
+    </head>
+
+    <body>
+        <section name="top-menu" class="top-menu">
+
+            {% if session.username %}
+    
+            <ul>
+                
+                <button onclick="location.href='/'">Home</button>
+                <button onclick="location.href = '/join-us'">Join-us!</button>
+                <button onclick="location.href='/contact-us'">Contact us</button>
+                <button onclick="location.href='/logout'">Logout</button>
+    
+    
+            </ul>
+            {% else %}
+            
+            <ul>
+                
+                <button onclick="location.href='/'">Home</button>
+                <button onclick="location.href = '/join-us'">Join-us!</button>
+                <button onclick="location.href='/contact-us'">Contact us</button>
+                <button onclick="location.href='/login'">Login</button>
+            
+    
+            </ul>
+            {% endif %}
+        </section>
+
+        <div>
+            <p>Login:</p>
+
+        </div>
+
+
+        <section name="login-box" class="">
+
+            {% if session.username %}
+
+            <p>You are logged in with account {{session.username}}</p>
+           
+            {% else %}
+            <div name="login-form" class="login-form">
+
+                <form action="/login-execute-customer" method="POST">
+
+                <input name="email" type="text" placeholder="Email">
+                <input name="password" type="password" placeholder="Password">
+                <input type="submit" value="login">
+                </form>
+
+                <button onclick="location.href='change-password'">Change password</button>
+
+                <button onclick="location.href='/business-portal'">Business portal</button>
+               
+
+
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p>{{ message }} </p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+            </div>
+            {% endif %}
+
+
+
+        </section>
+
+    
+
+    <footer>
+
+    </footer>
+    <script src="../static/scripts/scripts.js"></script>
+    </body>
+  
+    </html> 

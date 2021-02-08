@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <title></title>
+      <!--<link rel="stylesheet" href="/static/css/styles.css"> -->
+      <link rel="stylesheet" href="../static/css/styles.css">
+
+
+    </head>
+
+    <body>
+    
+      <section name="top-menu" class="top-menu">
+
+        {% if session.username %}
+
+        <ul>
+            
+            <button onclick="location.href='/'">Home</button>
+            <button onclick="location.href = '/join-us'">Join-us!</button>
+            <button onclick="location.href='/contact-us'">Contact us</button>
+            <button onclick="location.href='/manage-account'">>Manage account</button>
+            <button onclick="location.href='/logout'">Logout</button>
+
+
+        </ul>
+        {% else %}
+        
+        <ul>
+            
+            <button onclick="location.href='/'">Home</button>
+            <button onclick="location.href = '/join-us'">Join-us!</button>
+            <button onclick="location.href='/contact-us'">Contact us</button>
+            <button onclick="location.href='/login'">Login</button>
+        
+
+        </ul>
+        {% endif %}
+    </section>
+
+    <section name="" class="">
+
+    
+        {% if session.type != "company" %}
+
+        <p> You need a business account to manage restaurants. Apply trought the Join-us! section</p>
+
+        {% else %}
+
+
+        <p> Hello {{session.username}}! Down below you can manage your restaurants!</p>
+
+        <button onclick="location.href='/logout'"">Logout</button>
+
+        <section name="add-restaurant">
+
+          <p>Add new restaurant</p>
+
+          <form action="/add-restaurant" method="POST">
+          <input name="name" type="text" placeholder="Name" >
+          <input name="email" type="text" placeholder="Restaurant contact email">
+          <input name="phonenumber" type="text" placeholder="Restaurant contact phone number">
+          <input name="streetadress" type="text" placeholder="Restauran street adress">
+          <input name="zip" type="text" placeholder="Zip-code">
+          <input type="submit" value="Add restaurant">
+
+          </form>
+
+        </section>
+
+        {% endif %}
+
+    </section>
+
+    <section>
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                <p>{{ message }} </p>
+              {% endfor %}
+          {% endif %}
+        {% endwith %}
+      <hr>
+
+    
+    {% for restaurant in restaurantsToDisplay %}
+      Restaurant id: {{restaurant[0]}}
+      <br>
+      Restaurant name: {{restaurant[1]}}
+      <button onclick="locatioin.href=''">Manage</button>
+      <br>
+      <br>
+        
+    {% endfor %}
+
+
+      
+
+      
+    </section>
+      
+
+
+    
+
+    <footer>
+
+    </footer>
+    <script src="../static/scripts/scripts.js"></script>
+    </body>
+
+    </html> 

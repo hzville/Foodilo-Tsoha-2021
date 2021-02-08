@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Foodilo - fast and tasty!</title>
+      <!--<link rel="stylesheet" href="/static/css/styles.css"> -->
+      <link rel="stylesheet" href="../static/css/styles.css">
+
+
+    </head>
+
+   <!--<style type="text/css" media="screen">
+   
+   body{
+       background-color: blueviolet;
+   }
+    
+    p{
+    color: red;
+    border: 1px solid black;
+}
+
+.top-menu{
+    display: inline;
+    background-color: blue;
+}
+    
+    </style> -->
+    
+    <body>
+    <section name="top-menu" class="top-menu">
+
+        {% if session.username %}
+
+        <ul>
+            
+            <button onclick="location.href='/'">Home</button>
+            <button onclick="location.href = '/join-us'">Join-us!</button>
+            <button onclick="location.href='/contact-us'">Contact us</button>
+            <button onclick="location.href='/logout'">Logout</button>
+
+
+        </ul>
+        {% else %}
+        
+        <ul>
+            
+            <button onclick="location.href='/'">Home</button>
+            <button onclick="location.href = '/join-us'">Join-us!</button>
+            <button onclick="location.href='/contact-us'">Contact us</button>
+            <button onclick="location.href='/login'">Login</button>
+        
+
+        </ul>
+        {% endif %}
+    </section>
+
+    <section>
+        {%if session.username%}
+
+        <p>You are logged in as {{session.username}}</p>
+
+        {% endif %}
+
+    </section>
+
+    <section name="main-functions" class="main-functions">
+
+        <form action="/search" method="GET">
+
+        <input name="query" type="text" placeholder="Search for restaurant">
+        <input type="submit" value="Search">
+
+        </form>
+
+
+
+        <div>
+
+            {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                <p>{{ message }} </p>
+              {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+            <div class="search-results">
+            {% for result in resultToDisplay %}
+            
+            <a href="/restaurants/{{result[0]}}" class="search-results">
+            Name: {{result[1]}}
+            <br>
+            Adress: {{result[2]}} {{result[3]}}
+            <br>
+            Phone number: {{result[4]}}
+            </a>
+            <br>
+            <br>
+
+            {% endfor %}
+            </div>
+
+        </div>
+
+    </section>
+
+    
+
+    <footer>
+
+    </footer>
+
+    </body>
+    <script src="../static/scripts/scripts.js"></script>
+    </html> 
