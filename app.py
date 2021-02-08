@@ -137,8 +137,7 @@ def loginBusiness():
             flash('Login failed: Invalid username or password. (password wrong)')
             return redirect("/login")
 
-@app.route("/manage-accounts")
-def manageAccounts():
+
     
 
 @app.route("/manage-restaurants")
