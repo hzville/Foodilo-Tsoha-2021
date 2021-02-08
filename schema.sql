@@ -7,6 +7,7 @@ CREATE TABLE customers (id SERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, type 
 _______________________________________________________________________________________________________________________________________
 
 ##Company table:
+
 CREATE TABLE companys (id SERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, type TEXT NOT NULL DEFAULT 'company', name TEXT NOT NULL, businessid TEXT NOT NULL, contactname TEXT NOT NULL, contactnumber BIGINT NOT NULL, streetname TEXT NOT NULL, zip INT NOT NULL, country TEXT NOT NULL DEFAULT 'FINLAND', singupdate DATE DEFAULT NOW(), password TEXT NOT NULL);
 
 
