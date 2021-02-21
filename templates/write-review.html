@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+{% if session.username and session.type == 'customer' %}
+
+{% for review in review_history %}
+
+<p>You have written the following review: {{review[0]}}</p>
+<p>and give the score {{review[1]}}</p>
+
+{% endfor %}
+
+
+{% for restaurant in restaurant_info %}
+<section name="write-review-section">
+    <p>You are writing review for restaurant:</p>
+    <p>{{restaurant[1]}}</p>
+
+    <form action="/review-execute" method="POST">
+
+        <textarea name="commentary" placeholder="Your commentary" id="" cols="30" rows="10"></textarea>
+        <br>
+        <input name="rating" type="number" min="1" max="5" placeholder="Your rating (1-5)">
+        <input name="restaurant_id" type="hidden" value="{{restaurant[0]}}">
+        <input type="submit" value="Send review">
+
+    </form>
+
+</section>
+{% endfor %}
+
+
+{% else %}
+
+<p>You need to login on a customer account to write a review!</p>
+
+{% endif %}
+
+
+{% endblock %}

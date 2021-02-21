@@ -1,97 +1,48 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="UTF-8">
-      <title></title>
-      <!--<link rel="stylesheet" href="/static/css/styles.css"> -->
-      <link rel="stylesheet" href="../static/css/styles.css">
+{% extends "layout.html" %}
 
+{% block content %}
 
-    </head>
+<section name="customer-singup" class="application-section">
 
-    
-    <body>
-        <section name="top-menu" class="top-menu">
+    <div class="singup-form">
+        <p>Register now:</p>
 
-            {% if session.username %}
-    
-            <ul>
-                
-                <button onclick="location.href='/'">Home</button>
-                <button onclick="location.href = '/join-us'">Join-us!</button>
-                <button onclick="location.href='/contact-us'">Contact us</button>
-                <button onclick="location.href='/logout'">Logout</button>
-    
-    
-            </ul>
-            {% else %}
-            
-            <ul>
-                
-                <button onclick="location.href='/'">Home</button>
-                <button id="join-us" onclick="location.href = '/join-us'">Join-us!</button>
-                <button onclick="location.href='/contact-us'">Contact us</button>
-                <button onclick="location.href='/login'">Login</button>
-            
-    
-            </ul>
-            {% endif %}
-        </section>
+        <form action="/new-account" method="POST">
+            <input name="email" type="email" placeholder="Your email adress">
+            <input name="password" type="password" placeholder="Password">
+            <input name="firstname" type="text" placeholder="Firstname">
+            <input name="lastname" type="text" placeholder="Lastname">
+            <input name="phonenumber" type="number" placeholder="Phone number">
+            <input name="streetname" type="text" placeholder="Street name and house number">
+            <input name="zip" type="number" placeholder="Zip code">
+            <input type="submit" value="Create account!">
 
-    <section name="top-area" class="">
-     
-    </section>
+        </form>
 
-    <section name="customer-singup" class="application-section">
+    </div>
 
-        <div class="singup-form">
-            <p>Register now:</p>
+</section>
 
-            <form action="/new-account" method="POST">
-                <input name="email" type="email" placeholder="Your email adress">
-                <input name="password" type="password" placeholder="Password">
-                <input name="firstname" type="text" placeholder="Firstname">
-                <input name="lastname" type="text" placeholder="Lastname">
-                <input name="phonenumber" type="number" placeholder="Phone number">
-                <input name="streetname" type="text" placeholder="Street name and house number">
-                <input name="zip" type="number" placeholder="Zip code">
+<section name="" class="application-section"">
 
-                <input type="submit" value="Create account!">
-        
-            </form>
+    <div class=" singup-form">
+    <p>To join us, please enter your company details:</p>
 
-        </div>
+    <form action="/new-company" method="POST">
 
-    </section>
+        <input name="company-name" type="text" placeholder="Company name">
+        <input name="email" type="text" placeholder="Email">
+        <input name="password" type="password" placeholder="Password">
+        <input name="business-id" type="text" placeholder="Business ID / VAT-number">
+        <input name="streetadress" type="text" placeholder="Street name and number">
+        <input name="zip" type="text" placeholder="Zip code">
+        <input name="contact-name" type="text" placeholder="Contact name">
+        <input name="contact-number" type="text" placeholder="Contact number">
+        <input type="submit" value="Join us!">
 
-    <section name="" class="application-section"">
+    </form>
+    </div>
 
-        <div class="singup-form">
-            <p>To join us, please enter your company details:</p>
+</section>
 
-            <form action="/new-company" method="POST">
-
-                <input name="company-name" type="text" placeholder="Company name">
-                <input name="email" type="text" placeholder="Email">
-                <input name="password" type="password" placeholder="Password">
-                <input name="business-id" type="text" placeholder="Business ID / VAT-number">
-                <input name="streetadress" type="text" placeholder="Street name and number">
-                <input name="zip" type="text" placeholder="Zip code">
-                <input name="contact-name" type="text" placeholder="Contact name">
-                <input name="contact-number" type="text" placeholder="Contact number">
-                <input type="submit" value="Join us!">
-               
-            </form>
-        </div>
-
-    </section>
-
-    
-
-    <footer>
-
-    </footer>
-
-    </body>
-    <script src="../static/scripts/scripts.js"></script>
-    </html> 
+{% endblock %}

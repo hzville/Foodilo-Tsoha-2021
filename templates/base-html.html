@@ -10,37 +10,36 @@
     </head>
     <body>
 
-    <section name="top-menu" class="top-menu">
-
       {% if session.username %}
 
-      <ul>
-          
-          <button onclick="location.href='/'">Home</button>
-          <button onclick="location.href='/contact-us'"id="join-us" onclick="location.href = '/join-us'">Join-us!</button>
-          <button onclick="location.href='/contact-us'">Contact us</button>
-          <button onclick="location.href='/logout'">Logout</button>
+        <section name="top-menu" class="top-menu"></section>
+
+          <ul>
+              
+            <button onclick="location.href='/'">Home</button>
+            <button onclick="location.href='/contact-us'"id="join-us" onclick="location.href = '/join-us'">Join-us!</button>
+            <button onclick="location.href='/contact-us'">Contact us</button>
+            <button onclick="location.href='/logout'">Logout</button>
 
 
-      </ul>
+          </ul>
+
+        </section>
+
       {% else %}
-      
-      <ul>
-          
-          <button onclick="location.href='/'">Home</button>
-          <button onclick="location.href = '/join-us'">Join-us!</button>
-          <button onclick="location.href='/contact-us'">Contact us</button>
-          <button onclick="location.href='/login'">Login</button>
-      
 
-      </ul>
+        <section name="top-menu" class="top-menu"></section>
+
+          <ul>
+              <button onclick="location.href='/'">Home</button>
+              <button onclick="location.href = '/join-us'">Join-us!</button>
+              <button onclick="location.href='/contact-us'">Contact us</button>
+              <button onclick="location.href='/login'">Login</button>
+          </ul>
+
+        </section>
+        
       {% endif %}
-  </section>
-
-    
-  
-
-    
 
     <footer>
 

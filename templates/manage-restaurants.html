@@ -1,113 +1,60 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <meta charset="UTF-8">
-      <title></title>
-      <!--<link rel="stylesheet" href="/static/css/styles.css"> -->
-      <link rel="stylesheet" href="../static/css/styles.css">
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section name="" class="">
 
 
-    </head>
+  {% if session.type != "company" %}
 
-    <body>
-    
-      <section name="top-menu" class="top-menu">
+  <p> You need a business account to manage restaurants. Apply trought the Join-us! section</p>
 
-        {% if session.username %}
-
-        <ul>
-            
-            <button onclick="location.href='/'">Home</button>
-            <button onclick="location.href = '/join-us'">Join-us!</button>
-            <button onclick="location.href='/contact-us'">Contact us</button>
-            <button onclick="location.href='/manage-account'">>Manage account</button>
-            <button onclick="location.href='/logout'">Logout</button>
+  {% else %}
 
 
-        </ul>
-        {% else %}
-        
-        <ul>
-            
-            <button onclick="location.href='/'">Home</button>
-            <button onclick="location.href = '/join-us'">Join-us!</button>
-            <button onclick="location.href='/contact-us'">Contact us</button>
-            <button onclick="location.href='/login'">Login</button>
-        
+  <p> Hello {{session.username}}! Down below you can manage your restaurants!</p>
 
-        </ul>
-        {% endif %}
-    </section>
+  <section name=" add-restaurant">
 
-    <section name="" class="">
+    <p>Add new restaurant</p>
 
-    
-        {% if session.type != "company" %}
+    <form action="/add-restaurant" method="POST">
+      <input name="name" type="text" placeholder="Name">
+      <input name="email" type="text" placeholder="Restaurant contact email">
+      <input name="phonenumber" type="text" placeholder="Restaurant contact phone number">
+      <input name="streetadress" type="text" placeholder="Restauran street adress">
+      <input name="zip" type="text" placeholder="Zip-code">
+      <input type="submit" value="Add restaurant">
 
-        <p> You need a business account to manage restaurants. Apply trought the Join-us! section</p>
+    </form>
 
-        {% else %}
+  </section>
+
+  {% endif %}
 
 
-        <p> Hello {{session.username}}! Down below you can manage your restaurants!</p>
+  <section>
 
-        <button onclick="location.href='/logout'"">Logout</button>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }} </p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <hr>
 
-        <section name="add-restaurant">
 
-          <p>Add new restaurant</p>
-
-          <form action="/add-restaurant" method="POST">
-          <input name="name" type="text" placeholder="Name" >
-          <input name="email" type="text" placeholder="Restaurant contact email">
-          <input name="phonenumber" type="text" placeholder="Restaurant contact phone number">
-          <input name="streetadress" type="text" placeholder="Restauran street adress">
-          <input name="zip" type="text" placeholder="Zip-code">
-          <input type="submit" value="Add restaurant">
-
-          </form>
-
-        </section>
-
-        {% endif %}
-
-    </section>
-
-    <section>
-      {% with messages = get_flashed_messages() %}
-          {% if messages %}
-              {% for message in messages %}
-                <p>{{ message }} </p>
-              {% endfor %}
-          {% endif %}
-        {% endwith %}
-      <hr>
-
-    
     {% for restaurant in restaurantsToDisplay %}
-      Restaurant id: {{restaurant[0]}}
-      <br>
-      Restaurant name: {{restaurant[1]}}
-      <button onclick="locatioin.href=''">Manage</button>
-      <br>
-      <br>
-        
+    Restaurant id: {{restaurant[0]}}
+    <br>
+    Restaurant name: {{restaurant[1]}}
+    <button onclick="locatioin.href=''">Manage</button>
+    <br>
+    <br>
+
     {% endfor %}
 
+  </section>
 
-      
-
-      
-    </section>
-      
-
-
-    
-
-    <footer>
-
-    </footer>
-    <script src="../static/scripts/scripts.js"></script>
-    </body>
-
-    </html> 
+{% endblock %}
