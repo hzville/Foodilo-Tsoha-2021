@@ -17,8 +17,6 @@ Kaikille yhteiset ominaisuudet:
 
 -Etsiä ravintoloita
 -Lukea arvosteluita
-~~-Selata ruokalistaa
--Tarkistaa aukioloajat
 
 
 Asiakastilin ominaisuudet:
