@@ -205,7 +205,6 @@ def restaurants(id):
     result = db.session.execute(sql,{"id":id})
     restaurant_result = result.fetchall()
 
-    print(restaurant_result)
 
     if len(restaurant_result) <= 0:
         flash("Restaurant not found, please try again!")
@@ -215,8 +214,6 @@ def restaurants(id):
     result = db.session.execute(sql,{"id":id})
     reviewers_result = result.fetchall()
 
-
-    print(reviewers_result)
 
     return render_template("/restaurants.html", id=id, restaurant_result=restaurant_result, reviewers_result=reviewers_result)
 
@@ -233,7 +230,7 @@ def write_review(id):
     result2 = result.fetchone()
     reviewer_id = result2[0]
 
-    sql = "SELECT commentary, score FROM reviews WHERE restaurant_id=:restaurant_id AND reviewerid=:reviewer_id"
+    sql = "SELECT commentary, score FROM reviews WHERE restaurant_id=:restaurant_id AND reviewer_id=:reviewer_id"
     result = db.session.execute(sql, {"restaurant_id":id, "reviewer_id":reviewer_id})
     review_history = result.fetchall()
 
@@ -265,7 +262,7 @@ def review_exceute():
     firstname = result2[1]
     lastname = result2[2]
 
-    sql = "INSERT INTO reviews (restaurant_id, reviewerid, reviewer_firstname, reviewer_lastname, score, commentary) VALUES (:restaurant_id, :reviewer_id, :reviewer_firstname, :reviewer_lastname, :score, :commentary)"
+    sql = "INSERT INTO reviews (restaurant_id, reviewer_id, reviewer_firstname, reviewer_lastname, score, commentary) VALUES (:restaurant_id, :reviewer_id, :reviewer_firstname, :reviewer_lastname, :score, :commentary)"
     db.session.execute(sql,{"restaurant_id":restaurant_id, "reviewer_id":reviewer_id, "reviewer_firstname":firstname, "reviewer_lastname":lastname, "score":score, "commentary":commentary})
     db.session.commit()
 
@@ -284,7 +281,7 @@ def logout():
 
 # Use this for reading excel into database
 
-@app.route("/read")
+#@app.route("/read")
 def read():
 
     path = "zip_code_mapping.xls"
