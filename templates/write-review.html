@@ -20,9 +20,9 @@
 
     <form action="/review-execute" method="POST">
 
-        <textarea name="commentary" placeholder="Your commentary" id="" cols="30" rows="10"></textarea>
+        <textarea name="commentary" placeholder="Your commentary" id="" cols="30" rows="10" maxlength="500"></textarea>
         <br>
-        <input name="rating" type="number" min="1" max="5" placeholder="Your rating (1-5)">
+        <input name="rating" type="number" min="1" max="5" placeholder="Your rating (1-5)" maxlength="100">
         <input name="restaurant_id" type="hidden" value="{{restaurant[0]}}">
         <input type="submit" value="Send review">
 

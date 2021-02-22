@@ -52,15 +52,11 @@ def new_account():
     hash_password = generate_password_hash(request.form["password"])
     firstname = request.form["firstname"]
     lastname = request.form["lastname"]
-    phonenumber = request.form["phonenumber"]
-    streetname = request.form["streetname"]
-    zip = request.form["zip"]
 
-
-    sql = "INSERT INTO customers (email, firstname, lastname, phonenumber, streetname, zip, password) VALUES (:email, :firstname, :lastname, :phonenumber, :streetname, :zip, :hash_password)"
-    db.session.execute(sql,{"email":email, "firstname":firstname, "lastname":lastname, "phonenumber":phonenumber, "streetname":streetname, "zip":zip, "hash_password":hash_password})
+    sql = "INSERT INTO customers (email, firstname, lastname, password) VALUES (:email, :firstname, :lastname, :hash_password)"
+    db.session.execute(sql,{"email":email, "firstname":firstname, "lastname":lastname, "hash_password":hash_password})
     db.session.commit()
-    flash('Account created succesfully')
+    flash('Account created succesfully!')
     return redirect("/login")
 
 @app.route("/new-company", methods=["POST"])
@@ -77,8 +73,8 @@ def new_company():
     db.session.execute(sql,{"email":email, "companyname":companyname, "business_id":business_id, "contactname":contactname, "contactnumber":contactnumber, "streetname":streetadress, "zip":zip, "hash_password":hash_password})
     db.session.commit()
 
-
-    return redirect("/")
+    flash("Account " + email +" was created succesfully!")
+    return redirect("/login")
 
     
 
@@ -205,20 +201,24 @@ def add_restaurants():
 @app.route("/restaurants/<int:id>")
 def restaurants(id):
 
-    sql = "SELECT name, email, phonenumber, streetname, zip FROM restaurants WHERE id=:id"
+    sql = "SELECT name, email, phonenumber, streetname, zip, city FROM restaurants WHERE id=:id"
     result = db.session.execute(sql,{"id":id})
-    restaurantsResult = result.fetchall()
+    restaurant_result = result.fetchall()
 
-    if len(restaurantsResult) <= 0:
+    print(restaurant_result)
+
+    if len(restaurant_result) <= 0:
         flash("Restaurant not found, please try again!")
         return render_template("error.html")
 
     sql = "SELECT reviewer_firstname, reviewer_lastname, score, commentary FROM reviews WHERE restaurant_id=:id"
     result = db.session.execute(sql,{"id":id})
-    reviewersResult = result.fetchall()
+    reviewers_result = result.fetchall()
 
 
-    return render_template("/restaurants.html", id=id, restaurantsResult=restaurantsResult, reviewersResult=reviewersResult)
+    print(reviewers_result)
+
+    return render_template("/restaurants.html", id=id, restaurant_result=restaurant_result, reviewers_result=reviewers_result)
 
 @app.route("/write-review/<int:id>")
 def write_review(id):

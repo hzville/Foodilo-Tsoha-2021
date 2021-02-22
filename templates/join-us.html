@@ -8,13 +8,10 @@
         <p>Register now:</p>
 
         <form action="/new-account" method="POST">
-            <input name="email" type="email" placeholder="Your email adress">
-            <input name="password" type="password" placeholder="Password">
-            <input name="firstname" type="text" placeholder="Firstname">
-            <input name="lastname" type="text" placeholder="Lastname">
-            <input name="phonenumber" type="number" placeholder="Phone number">
-            <input name="streetname" type="text" placeholder="Street name and house number">
-            <input name="zip" type="number" placeholder="Zip code">
+            <input name="email" type="email" placeholder="Your email adress" maxlength="100" required>
+            <input name="password" type="password" placeholder="Password" minlength="6" maxlength="100" required>
+            <input name="firstname" type="text" placeholder="Firstname" maxlength="100" required>
+            <input name="lastname" type="text" placeholder="Lastname" maxlength="100" required>
             <input type="submit" value="Create account!">
 
         </form>
@@ -30,14 +27,14 @@
 
     <form action="/new-company" method="POST">
 
-        <input name="company-name" type="text" placeholder="Company name">
-        <input name="email" type="text" placeholder="Email">
-        <input name="password" type="password" placeholder="Password">
-        <input name="business-id" type="text" placeholder="Business ID / VAT-number">
-        <input name="streetadress" type="text" placeholder="Street name and number">
-        <input name="zip" type="text" placeholder="Zip code">
-        <input name="contact-name" type="text" placeholder="Contact name">
-        <input name="contact-number" type="text" placeholder="Contact number">
+        <input name="company-name" type="text" placeholder="Company name" maxlength="100" required>
+        <input name="email" type="email" placeholder="Email" maxlength="100" required>
+        <input name="password" type="password" placeholder="Password" minlength="6" maxlength="100" required >
+        <input name="business-id" type="text" placeholder="Business ID / VAT-number" maxlength="100" required>
+        <input name="streetadress" type="text" placeholder="Street name and number" maxlength="100" required>
+        <input name="zip" type="text" placeholder="Zip code" maxlength="100" required>
+        <input name="contact-name" type="text" placeholder="Contact name" maxlength="100" required> 
+        <input name="contact-number" type="text" placeholder="Contact number" maxlength="100" required>
         <input type="submit" value="Join us!">
 
     </form>

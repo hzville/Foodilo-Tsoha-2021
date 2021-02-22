@@ -19,11 +19,11 @@
     <p>Add new restaurant</p>
 
     <form action="/add-restaurant" method="POST">
-      <input name="name" type="text" placeholder="Name">
-      <input name="email" type="text" placeholder="Restaurant contact email">
-      <input name="phonenumber" type="text" placeholder="Restaurant contact phone number">
-      <input name="streetadress" type="text" placeholder="Restauran street adress">
-      <input name="zip" type="text" placeholder="Zip-code">
+      <input name="name" type="text" placeholder="Name" maxlength="100">
+      <input name="email" type="text" placeholder="Restaurant contact email" maxlength="100">
+      <input name="phonenumber" type="text" placeholder="Restaurant contact phone number" maxlength="100">
+      <input name="streetadress" type="text" placeholder="Restauran street adress" maxlength="100">
+      <input name="zip" type="text" placeholder="Zip-code" maxlength="100">
       <input type="submit" value="Add restaurant">
 
     </form>

@@ -14,14 +14,14 @@
 
 <section name="restaurant-information" class="">
 
-  {% for restaurantInfo in restaurantsResult %}
-  Restaurant name: {{restaurantInfo[0]}}
+  {% for restaurant_info in restaurant_result %}
+  Restaurant name: {{restaurant_info[0]}}
   <br>
-  Restaurant phone number: {{restaurantInfo[1]}}
+  Restaurant phone number: {{restaurant_info[1]}}
   <br>
-  Restaurant email: {{restaurantInfo[2]}}
+  Restaurant email: {{restaurant_info[2]}}
   <br>
-  Restaurant adress: {{restaurantInfo[3]}}
+  Restaurant adress: {{restaurant_info[3]}}, {{restaurant_info[5]}}
   <br>
   <br>
 
@@ -31,18 +31,27 @@
 
 <section name="reviews">
 
-  {% for review in reviewersResult %}
-  Reviewer name: {{review[0]}} {{review[1]}}
+  <h2>Reviews:</h2>
+  
+  {% if reviewers_result|length %}
 
+  {% for review in reviewers_result %}
+  
+  <div class="review">Reviewer name: {{review[0]}} {{review[1]}}<br>
+  Score: {{review[2]}}<br>
+  Reviewer commentary:<br>
+  {{review[3]}}<br></div>
   <br>
-  Score: {{review[2]}}
-  <br>
-  Reviewer commentary: <br>
-  {{review[3]}}
-  <br>
-  <br>
+
 
   {% endfor %}
+
+  {% else %}
+
+  <p> No reivews yet </p>
+
+
+  {% endif %}
 
 </section>
 

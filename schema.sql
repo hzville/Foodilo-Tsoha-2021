@@ -1,7 +1,6 @@
 
 
-CREATE TABLE customers (id SERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, firstname TEXT NOT NULL, lastname TEXT NOT NULL, phonenumber BIGINT UNIQUE NOT NULL, streetname TEXT NOT NULL, zip INT NOT NULL, country TEXT NOT NULL DEFAULT 'FINLAND', singupdate DATE DEFAULT NOW(), password TEXT NOT NULL); 
-
+CREATE TABLE customers (id SERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, firstname TEXT NOT NULL, lastname TEXT NOT NULL, singupdate DATE DEFAULT NOW(), password TEXT NOT NULL); 
 
 
 
