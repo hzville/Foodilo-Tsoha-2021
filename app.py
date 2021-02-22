@@ -284,7 +284,7 @@ def logout():
 
 # Use this for reading excel into database
 
-#@app.route("/read")
+@app.route("/read")
 def read():
 
     path = "zip_code_mapping.xls"
