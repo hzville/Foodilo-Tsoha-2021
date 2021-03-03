@@ -2,25 +2,23 @@
 
 {% block content %}
 
-</section>
-
-
-<div>
-    <p>Login to business portal:</p>
-
-</div>
-
 
 <section name="login-box" class="">
 
-    {% if session.username %}
+    {% if session.username and session.type == "company" %}
 
     <p>You are logged in on business account {{session.username}}</p>
     <button onclick="location.href='manage-restaurants'"> Manage restaurants </button>
 
 
+    {% elif session.username and session.type == "customer" %}
+
+    <p>You need a business account to access the business portal. You can create a business account from "Join-us"-section</p>
+
     {% else %}
     <div name="login-form" class="login-form">
+
+        <p>Login to business portal:</p>
 
         <form action="/login-execute-business" method="POST">
 

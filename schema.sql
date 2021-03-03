@@ -4,7 +4,7 @@ CREATE TABLE customers (id SERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, first
 
 
 
-CREATE TABLE companys (id SERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, name TEXT NOT NULL, business_id TEXT NOT NULL, contactname TEXT NOT NULL, contactnumber BIGINT NOT NULL, streetname TEXT NOT NULL, zip INT NOT NULL, country TEXT NOT NULL DEFAULT 'FINLAND', singupdate DATE DEFAULT NOW(), password TEXT NOT NULL);
+CREATE TABLE companys (id SERIAL PRIMARY KEY, email TEXT UNIQUE NOT NULL, name TEXT NOT NULL, business_id TEXT NOT NULL, contactname TEXT NOT NULL, contactnumber TEXT NOT NULL, streetname TEXT NOT NULL, zip INT NOT NULL, country TEXT NOT NULL DEFAULT 'FINLAND', singupdate DATE DEFAULT NOW(), password TEXT NOT NULL);
 
 
 

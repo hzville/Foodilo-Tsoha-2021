@@ -16,14 +16,14 @@
 {% for restaurant in restaurant_info %}
 <section name="write-review-section">
     <p>You are writing review for restaurant:</p>
-    <p>{{restaurant[1]}}</p>
+    <p>{{restaurant[0]}}</p>
 
     <form action="/review-execute" method="POST">
 
         <textarea name="commentary" placeholder="Your commentary" id="" cols="30" rows="10" maxlength="500"></textarea>
         <br>
         <input name="rating" type="number" min="1" max="5" placeholder="Your rating (1-5)" maxlength="100">
-        <input name="restaurant_id" type="hidden" value="{{restaurant[0]}}">
+        <input name="restaurant_id" type="hidden" value="{{restaurant_id}}">
         <input type="submit" value="Send review">
 
     </form>
