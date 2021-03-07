@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% if not session.type %}
+<p>You need to login to manage account settings</p>
+{% else %}
+
+<section name="Change password">
+
+    <button onclick="showPasswordForm()">Change password</button>
+
+    <div id="password-form" style="display: none;">
+        <form action="/manage-account" method="POST">
+
+            <input type="password" name="first-input-pwupdate" placeholder="Enter new password" minlength="6"
+                maxlength="100" required>
+            <br>
+            <input type="password" name="second-input-pwupdate" placeholder="Enter new password again" minlength="6"
+                maxlength="100" required>
+            <input type="submit" value="Update password" name="update-pw" id="">
+
+        </form>
+    </div>
+
+
+</section>
+
+{% if session.type == 'customer' %}
+
+<section name="customer-reviews">
+    <p>Your reviews:</p>
+    {% if review_history|length %}
+    <div>
+        {% for review in review_history %}
+
+        <a href="/restaurants/{{review[0]}}" class="search-results">
+            Restaurant name: {{review[1]}}
+            <br>
+            Date: {{review[2]}}
+            <br>
+            Score: {{review[3]}}
+            <br>
+            Commentary: {{review[4]}}
+            <br>
+        </a>
+        <button onclick="location.href='/write-review/{{review[0]}}'">Edit review</button>
+        <br>
+        <br>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>You have not made any reviews yet</p>
+    {% endif %}
+
+</section>
+{% else %}
+
+{% endif %}
+
+{% endif %}
+
+
+{% endblock %}

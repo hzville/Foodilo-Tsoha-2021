@@ -43,7 +43,13 @@ def add_new_restaurant(name, email, phonenumber, streetadress, zip, city, owner_
     db.session.execute(sql,{"name":name,"email":email,"phonenumber":phonenumber,"streetadress":streetadress, "zip":zip, "city":city, "owner_id":owner_id})
     db.session.commit()
 
-def add_new_review(restaurant_id,reviewer_id,firstname,lastname,score,commentary):
-    sql = "INSERT INTO reviews (restaurant_id, reviewer_id, reviewer_firstname, reviewer_lastname, score, commentary) VALUES (:restaurant_id, :reviewer_id, :reviewer_firstname, :reviewer_lastname, :score, :commentary)"
-    db.session.execute(sql,{"restaurant_id":restaurant_id, "reviewer_id":reviewer_id, "reviewer_firstname":firstname, "reviewer_lastname":lastname, "score":score, "commentary":commentary})
+def add_new_review(restaurant_id,restaurant_name,reviewer_id,firstname,lastname,score,commentary):
+    sql = "INSERT INTO reviews (restaurant_id, restaurant_name, reviewer_id, reviewer_firstname, reviewer_lastname, score, commentary) VALUES (:restaurant_id, :restaurant_name, :reviewer_id, :reviewer_firstname, :reviewer_lastname, :score, :commentary)"
+    db.session.execute(sql,{"restaurant_id":restaurant_id,"restaurant_name":restaurant_name, "reviewer_id":reviewer_id, "reviewer_firstname":firstname, "reviewer_lastname":lastname, "score":score, "commentary":commentary})
+    db.session.commit()
+
+def add_new_feedback(name, email, feedback):
+
+    sql = "INSERT INTO feedback (name, email, feedback) VALUES (:name , :email, :feedback)"
+    db.session.execute(sql, {"name":name, "email":email, "feedback":feedback})
     db.session.commit()

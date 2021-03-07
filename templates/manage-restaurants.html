@@ -19,10 +19,12 @@
     <p>Add new restaurant</p>
 
     <form action="/add-restaurant" method="POST">
-      <input name="name" type="text" placeholder="Name" maxlength="100" required>
-      <input name="email" type="text" placeholder="Restaurant contact email" maxlength="100" required>
-      <input name="phonenumber" type="text" placeholder="Restaurant contact phone number" maxlength="100" required>
-      <input name="streetadress" type="text" placeholder="Restauran street adress" maxlength="100" required>
+      <input name="name" type="text" placeholder="Name" value="{{name}}" maxlength="100" required>
+      <input name="email" type="text" placeholder="Restaurant contact email" value="{{email}}" maxlength="100" required>
+      <input name="phonenumber" type="text" placeholder="Restaurant contact phone number" value="{{phonenumber}}"
+        maxlength="100" required>
+      <input name="streetadress" type="text" placeholder="Restauran street adress" value="{{streetadress}}"
+        maxlength="100" required>
       <input name="zip" type="text" placeholder="Zip-code" maxlength="100" required>
       <input type="submit" value="Add restaurant">
 
@@ -34,27 +36,72 @@
 
 
   <section>
-
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <p>{{ message }} </p>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    <hr>
-
+    {% if restaurants_to_display | length %}
 
     {% for restaurant in restaurants_to_display %}
-    Restaurant id: {{restaurant[0]}}
+
+    <form action="/manage-restaurants" id="restaurant-info-form" method="POST">
+
+      <input type="text" value="Restaurant id: {{restaurant[0]}}" disabled>
+      <br>
+      <input type="text" value="Restaurant name: {{restaurant[1]}}" disabled>
+      <br>
+      <input type="submit" name="edit" id="" value="Edit">
+      <input type="submit" name="delete-first" value="Delete">
+      <input type="hidden" value="{{restaurant[0]}}" name="restaurant_id" id="">
+    </form>
+    <br><br>
+    {% endfor %}
+
+    {% else %}
+
+    <p>You don't have any restaurants</p>
+
+    {% endif %}
+
+  </section name="restaurants-to-edit">
+
+  {% for data in restaurant_to_edit %}
+
+  <form action="/add-restaurant" method="POST">
+
+    Restaurant name: <input type="text" value="{{data[0]}}" name="name">
+    Email: <input type="text" value="{{data[1]}}" name="email">
+    Phonenumber: <input type="text" value="{{data[2]}}" name="phonenumber">
+    Streetname: <input type="text" value="{{data[3]}}" name="streetadress">
+    Zip: <input type="text" value="{{data[4]}}" name="zip">
+    <input type="hidden" value="{{restaurant_id}}" name="restaurant_id">
+    <input type="submit" value="Update" name="update">
+  </form>
+
+  <button onclick="location.href='/manage-restaurants'"> Cancel </button>
+
+  {% endfor %}
+
+  <section>
+    {% for data in restaurant_to_delete %}
+
+    Are you sure you want to delete the following restaurant:
     <br>
-    Restaurant name: {{restaurant[1]}}
-    <button onclick="locatioin.href=''">Manage</button>
+    {{data[0]}}
     <br>
+    {{data[1]}}
     <br>
+    {{data[2]}}
+    <br>
+    {{data[3]}}
+    <br>
+    {{data[4]}} {{data[5]}}
+    <br>
+
+    <form action="/manage-restaurants" method="post">
+      <input type="submit" name="delete" value="Delete restaurant">
+      <input type="submit" name="" value="Cancel">
+      <input type="hidden" value="{{restaurant_id}}" name="restaurant_id">
+    </form>
 
     {% endfor %}
 
   </section>
 
-{% endblock %}
+  {% endblock %}

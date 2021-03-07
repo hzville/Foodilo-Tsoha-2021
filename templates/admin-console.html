@@ -1,0 +1,190 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<section name="top-menu" class="top-menu">
+
+    <ul>
+
+        <form action="/admin-console" method="POST">
+
+            <input type="text" name="search" placeholder="Enter customer or company name">
+            <input type="submit" name="manage-customer-accounts" Value="Search accounts">
+            <input type="submit" name="show-feedback" value="Show feedback" id="">
+
+
+        </form>
+
+
+    </ul>
+
+</section>
+
+<section class="display-window">
+    {% if session.type == "admin" %}
+    <div class="feedback-boxes">
+
+        {% for feedback in feedback_waiting %}
+        <br>
+        Feedback id: {{feedback[0]}}
+        <br>
+        Customer name: {{feedback[1]}}
+        <br>
+        Customer email: {{feedback[2]}}
+        <br>
+        Feedback: {{feedback[3]}}
+        <br>
+        Needs action: {{feedback[4]}}
+        <br>
+        Date made: {{feedback[5]}}
+        <br>
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="mark-resolved" value="Mark as resolved">
+            <input type="hidden" name="feedback-id" value="{{feedback[0]}}">
+        </form>
+        <br>
+        <br>
+
+        {% endfor %}
+    </div>
+
+    <div class="feedback-boxes">
+        {% for feedback in feedback_resolved %}
+        <br>
+        Feedback id: {{feedback[0]}}
+        <br>
+        Customer name: {{feedback[1]}}
+        <br>
+        Customer email: {{feedback[2]}}
+        <br>
+        Feedback: {{feedback[3]}}
+        <br>
+        Needs action: {{feedback[4]}}
+        <br>
+        Date made: {{feedback[5]}}
+        <br>
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="needs-action" value="Mark as need action">
+            <input type="hidden" name="feedback-id" value="{{feedback[0]}}">
+        </form>
+        <br>
+        <br>
+
+        {% endfor %}
+    </div>
+
+    <div class="feedback-boxes">
+        {% for customer in customer_result %}
+        <b>Customer account</b>
+        <br>
+        Customer id: {{customer[0]}}
+        <br>
+        Customer name: {{customer[2]}} {{customer[3]}}
+        <br>
+        Customer email: {{customer[1]}}
+        <br>
+        Sign up date: {{customer[4]}}
+        <br>
+        Admin: {{customer[5]}}
+        <br>
+        Disabled: {{customer[6]}}
+        <br>
+
+        {% if customer[5] is sameas true %}
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="remove-admin" value="Remove admin">
+            <input type="hidden" name="customer_email" value="{{customer[1]}}">
+        </form>
+        {% else %}
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="make-admin" value="Make admin">
+            <input type="hidden" name="customer_email" value="{{customer[1]}}">
+        </form>
+        {% endif %}
+        {% if customer[6] is sameas true %}
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="enable-customer" value="Enable account">
+            <input type="hidden" name="customer_email" value="{{customer[1]}}">
+        </form>
+        {% else %}
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="disable-customer" value="Disable account">
+            <input type="hidden" name="customer_email" value="{{customer[1]}}">
+        </form>
+        {% endif %}
+        <br>
+        <br>
+
+        {% endfor %}
+    </div>
+
+    <div class="feedback-boxes">
+        {% for company in company_result %}
+        <b>Company account</b>
+        <br>
+        Company id: {{company[0]}}
+        <br>
+        Company name: {{company[2]}}
+        <br>
+        Company email: {{company[1]}}
+        <br>
+        Sign up date: {{company[3]}}
+        <br>
+        Disabled: {{company[4]}}
+        <br>
+        {% if company[4] is sameas true %}
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="enable-company" value="Enable account">
+            <input type="hidden" name="company_email" value="{{company[1]}}">
+        </form>
+        {% else %}
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="disable-company" value="Disable account">
+            <input type="hidden" name="company_email" value="{{company[1]}}">
+        </form>
+        <br>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <div class="feedback-boxes">
+        {% for review in review_result %}
+        <b>Reviews:</b>
+        <br>
+        Review id: {{review[0]}}
+        <br>
+        Reviewer name: {{review[2]}} {{review[3]}}
+        <br>
+        Submitted: {{review[4]}}
+        <br>
+        Score: {{review[5]}}
+        <br>
+        Commentary: {{review[6]}}
+        <br>
+        Disabled: {{review[7]}}
+        <br>
+        {% if review[7] is sameas true %}
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="recover-review" value="Recover review">
+            <input type="hidden" name="review_id" value="{{review[0]}}">
+        </form>
+        {% else %}
+        <form action="/admin-console" method="POST">
+            <input type="submit" name="delete-review" value="Delete review">
+            <input type="hidden" name="review_id" value="{{review[0]}}">
+        </form>
+        <br>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+
+
+</section>
+
+{% else %}
+<p>The page you requested is not avaliable for your account</p>
+{% endif %}
+
+{% endblock %}

@@ -10,6 +10,26 @@
 <p>You have written the following review: {{review[0]}}</p>
 <p>and give the score {{review[1]}}</p>
 
+<div id="first-form">
+    <form action="/write-review/{{review[2]}}" method="post">
+        <input name="edit" type="submit" value="Edit">
+    </form>
+    <button onclick="confirmDelete()" name="delete" value="Delete" id="first-delete">Delete</button>
+</div>
+
+
+<div id="second-form" style="display: none;">
+    <p>Are you sure you want to delete the review?</p>
+    <button onclick="cancelDelete()" value="Cancel" id="cancel">Cancel</button>
+    <form action="/write-review/{{review[2]}}" method="post">
+        <input type="submit" name="delete" value="Delete review" id="second-delete">
+    </form>
+
+
+</div>
+
+
+
 {% endfor %}
 
 
@@ -20,10 +40,13 @@
 
     <form action="/review-execute" method="POST">
 
-        <textarea name="commentary" placeholder="Your commentary" id="" cols="30" rows="10" maxlength="500"></textarea>
+        <textarea name="commentary" placeholder="Your commentary" id="" cols="30" rows="10" maxlength="500"
+            required>{{commentary}}</textarea>
         <br>
-        <input name="rating" type="number" min="1" max="5" placeholder="Your rating (1-5)" maxlength="100">
+        <input name="rating" type="number" min="1" max="5" value="{{score}}" placeholder="Your rating (1-5)"
+            maxlength="100" required>
         <input name="restaurant_id" type="hidden" value="{{restaurant_id}}">
+        <input name="restaurant_name" type="hidden" value="{{restaurant[0]}}">
         <input type="submit" value="Send review">
 
     </form>

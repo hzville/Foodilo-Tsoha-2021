@@ -2,8 +2,31 @@
 
 {% block content %}
 
-<h2>Coming soon.....</h2>
+<section name="feedback-section">
 
-v3
+<div>
+    <p>If you have questions or just want to get in touch, please send us
+        message with the following form. We look forward to hear your feedback!
+    </p>
+</div>
+
+<div>
+    <form action="/send-feedback" method="POST">
+        <input name="name" type="text" placeholder="Your name" required>
+        <br>
+        <input name="email" type="email" placeholder="Your email" value="{{email}}" required>
+        <br>
+        <textarea name="feedback" type="text" placeholder="Your feedback" cols="70" rows="10" maxlength="500" required></textarea>
+        <br>
+        <input type="submit" value="Send feedback">
+
+    </form>
+
+</div>
+
+</section>
+
+
+
 
 {% endblock %}

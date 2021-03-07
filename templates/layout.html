@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <!--<link rel="stylesheet" href="/static/css/styles.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/css/styles.css">
 
 
@@ -19,11 +19,22 @@
         <ul>
 
             <button onclick="location.href='/'">Home</button>
+
+            {% if not session.type %}
             <button onclick="location.href='/join-us'" id="join-us"
                 onclick="location.href = '/join-us'">Join-us!</button>
+            {% else %}
+            <button onclick="location.href='/manage-account'"> Manage account </button>
+            {% endif %}
+
             {% if session.type == "company" %}
             <button onclick="location.href='/manage-restaurants'">Manage restaurants</button>
             {% endif %}
+
+            {% if session.type == "admin" %}
+            <button onclick="location.href= '/admin-console'">Admin console</button>
+            {% endif %}
+
             <button onclick="location.href='/contact-us'">Contact us</button>
             <button onclick="location.href='/logout'">Logout</button>
 
@@ -48,20 +59,28 @@
 
 
     {% endif %}
+    <section name="flashed-messages">
+
+        <div class="flashed-messages-area">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+        </div>
+
+    </section>
 
     {% block main %}
-    
+
     {% endblock %}
 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <p>{{ message }} </p>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
 
     {% block content %}
+    <script src="../static/scripts/scripts.js"></script>
 
     {% endblock %}
 

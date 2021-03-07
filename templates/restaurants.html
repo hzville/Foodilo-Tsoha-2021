@@ -32,15 +32,15 @@
 <section name="reviews">
 
   <h2>Reviews:</h2>
-  
+
   {% if reviewers_result|length %}
 
   {% for review in reviewers_result %}
-  
+
   <div class="review">Reviewer name: {{review[0]}} {{review[1]}}<br>
-  Score: {{review[2]}}<br>
-  Reviewer commentary:<br>
-  {{review[3]}}<br></div>
+    Score: {{review[2]}}<br>
+    Reviewer commentary:<br>
+    {{review[3]}}<br></div>
   <br>
 
 

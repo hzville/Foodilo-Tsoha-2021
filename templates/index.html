@@ -2,44 +2,110 @@
 
 {% block main %}
 
-    {% if session.username %}
+{% if session.username %}
 
-        <section>
-            <p>Welcome {{session.username}}!</p>
-        </section>
+<section>
+    <p>Welcome {{session.username}}!</p>
+</section>
 
-    {% endif %}
+{% endif %}
 
-    <section name="main-functions" class="main-functions">
+<section name="main-functions" class="main-functions">
 
-        <form action="/search" method="GET">
+    <form action="/search" method="GET">
 
-            <input name="query" type="text" placeholder="Enter city or restaurant name" maxlength="100">
-            <input type="submit" value="Search">
+        <input name="query" type="text" placeholder="Enter city or restaurant name" maxlength="100">
+        <input type="submit" value="Search">
 
-        </form>
+    </form>
 
 
-        <div>
+    <div>
 
-            <div class="search-results">
-                {% for result in result_to_display %}
+        <div class="search-results">
+            {% for result in result_to_display %}
 
-                <a href="/restaurants/{{result[0]}}" class="search-results">
-                    Name: {{result[1]}}
-                    <br>
-                    Adress: {{result[2]}}, {{result[4]}}
-                    <br>
-                    Phone number: {{result[5]}}
-                </a>
+            <a href="/restaurants/{{result[0]}}" class="search-results">
+                Name: {{result[1]}}
                 <br>
+                Adress: {{result[2]}}, {{result[4]}}
                 <br>
+                Phone number: {{result[5]}}
+            </a>
+            <br>
+            <br>
 
-                {% endfor %}
-            </div>
-
+            {% endfor %}
         </div>
 
-    </section>
+    </div>
+
+</section>
+
+<section name="display-window" class="display-window">
+
+    <div class="display-window-boxes">
+        Top score restaurants
+        <br>
+        <br>
+        <div>{% for review in best_avg %}
+            <a href="/restaurants/{{review[1]}}" class="search-results">
+                <div class="restaurants-small-box">
+
+                    Restaurant name: {{review[0]}}
+                    <br>
+                    Average score: {{review[2] | round(1)}} ({{review[3]}})
+                    <br>
+
+                </div>
+            </a>
+            <br>
+            {% endfor%}
+        </div>
+
+    </div>
+    <div class="display-window-boxes">Restaurants with most reviews
+        <br>
+        <br>
+        <div>{% for review in most_reviews %}
+            <a href="/restaurants/{{review[1]}}" class="search-results">
+                <div class="restaurants-small-box">
+                    Restaurant name: {{review[0]}}
+                    <br>
+                    Reviews in total: {{review[2]}}
+                    <br>
+                    <br>
+
+                </div>
+            </a>
+            {% endfor%}
+        </div>
+    </div>
+
+    <div class="display-window-boxes">Latest reviews
+        <br>
+        <br>
+        <div>{% for review in latest_reviews %}
+            <a href="/restaurants/{{review[0]}}" class="search-results">
+                <div class="restaurants-small-box">
+
+                    {{review[1]}} {{review[2]}}
+                    <br>
+                    Restaurant name: {{review[3]}}
+                    <br>
+                    Score: {{review[4]}}
+                    <br>
+                    Commentary: {{review[5]}}
+                    <br>
+                    <br>
+
+                </div>
+            </a>
+            {% endfor%}
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}
