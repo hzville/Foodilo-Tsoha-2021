@@ -5,6 +5,7 @@ import xlrd
 from random import *
 from app import app
 from db import db
+import os
 import search
 import insert_into
 import select_from
@@ -135,7 +136,7 @@ def login_customer():
             session["type"] = "customer"
             result, customer_id = select_from.get_customer_id(username)
             session["id"] = customer_id
-
+            session["csrf_token"] = os.urandom(16).hex()
             return redirect("/")
 
         else:
@@ -143,8 +144,7 @@ def login_customer():
             session["type"] = "admin"
             result, customer_id = select_from.get_customer_id(username)
             session["id"] = customer_id
-            print(session["username"])
-            print(session["id"])
+            session["csrf_token"] = os.urandom(16).hex()
             return redirect("/")
 
     else:
@@ -179,6 +179,7 @@ def login_business():
         session["username"] = username
         session["type"] = "company"
         session["id"] = select_from.get_owner_id(username)
+        session["csrf_token"] = os.urandom(16).hex()
         return redirect("/business-portal")
 
     else:
@@ -380,6 +381,11 @@ def write_review(restaurant_id):
 @app.route("/review-execute", methods=["POST"])
 def review_exceute():
 
+    if session["csrf_token"] != request.form["csrf_token"]:
+        flash("Problem with authentication")
+        return render_template("error.html")
+
+
     commentary = request.form["commentary"]
     score = request.form["rating"]
     restaurant_id = request.form["restaurant_id"]
@@ -420,6 +426,7 @@ def logout():
     del session["type"]
     del session["username"]
     del session["id"]
+    del session["csrf_token"]
     return redirect("/")
 
 
@@ -432,7 +439,7 @@ def send_feedback():
 
     insert_into.add_new_feedback(name, email, feedback)
 
-    flash("Thank you for your feedback. We handle it as soon as posssible!")
+    flash("Thank you for your feedback. We will handle it as soon as posssible!")
     return redirect("/")
 
 

@@ -48,6 +48,7 @@
         <input name="restaurant_id" type="hidden" value="{{restaurant_id}}">
         <input name="restaurant_name" type="hidden" value="{{restaurant[0]}}">
         <input type="submit" value="Send review">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 
     </form>
 

@@ -2,6 +2,7 @@
 
 {% block content %}
 
+{% if session.type == "admin" %}
 <section name="top-menu" class="top-menu">
 
     <ul>
@@ -12,7 +13,6 @@
             <input type="submit" name="manage-customer-accounts" Value="Search accounts">
             <input type="submit" name="show-feedback" value="Show feedback" id="">
 
-
         </form>
 
 
@@ -21,7 +21,7 @@
 </section>
 
 <section class="display-window">
-    {% if session.type == "admin" %}
+
     <div class="feedback-boxes">
 
         {% for feedback in feedback_waiting %}
