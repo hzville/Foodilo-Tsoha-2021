@@ -10,53 +10,53 @@ Sovellus on käytettävissä osoitteessa: https://foodilo-tsoha21.herokuapp.com/
 Foodilo on ravintoloiden etsimiseen ja arvosteluun keskittynyt sovellus.
 
 ### Sovelluksella voi: 
--[x] etsiä ravintoloita 
--[x] lukea arvosteluita
--[x] antaa arvosteluita
+- [x] etsiä ravintoloita 
+- [x] lukea arvosteluita
+- [x] antaa arvosteluita
 
 ### Sovellukseen voi rekisteröityä kahdella eri käyttäjätyypillä: 
--[x] asiakastili
--[x] yritystili
+- [x] asiakastili
+- [x] yritystili
 
 
 ### Kaikille yhteiset ominaisuudet:
 
--[x] mahdollisuus etsiä ravintoloita
--[x] mahdollisuus lukea arvosteluita
--[x] mahdollisuus vaihtaa salasana
+- [x] mahdollisuus etsiä ravintoloita
+- [x] mahdollisuus lukea arvosteluita
+- [x] mahdollisuus vaihtaa salasana
 
 ### Asiakastilin ominaisuudet:
 
--[x] mahdollisuus antaa ravintoloille arvosteluita
--[x] mahdollisuus poistaa arvosteluita
--[x] mahdollisuus muokata arvosteluita
+- [x] mahdollisuus antaa ravintoloille arvosteluita
+- [x] mahdollisuus poistaa arvosteluita
+- [x] mahdollisuus muokata arvosteluita
 
 ### Yritystilin ominaisuudet:
 
--[x] mahdollisuus lisätä ravintoloita
--[x] mahdollisuus poistaa ravintoloita
--[x] mahdollisuus muokata ravintolan tietoja
+- [x] mahdollisuus lisätä ravintoloita
+- [x] mahdollisuus poistaa ravintoloita
+- [x] mahdollisuus muokata ravintolan tietoja
 
 ### Ylläpitäjän ominaisuudet:
 
--[x] jäädyttää asiakas- tai yritystili
--[x] poistaa arvosteluita
--[x] lisätä ylläpitäjiä
--[x] käsitellä palveluun kohdistunutta palautetta asiakkailta
+- [x] jäädyttää asiakas- tai yritystili
+- [x] poistaa arvosteluita
+- [x] lisätä ylläpitäjiä
+- [x] käsitellä palveluun kohdistunutta palautetta asiakkailta
 
 
 ### Ominaisuudet ja rajoitukset:
--[x] etusivu näyttää parhaimman arvosanan saaneet ravintolat
--[x] etusivu näyttää eniten arvosteluita saaneet ravintolat
--[x] etusivu näyttää viimeisimmät arvostelut
--[x] ravintoloita voi etsiä nimellä esim: Kahvila Ruusu
--[x] ravintoloita voi etsiä kaupungin nimellä esim: Helsinki
--[x] sovellus antaa ymmärrettäviä virheilmoituksia (ravintolaa ei löydy, sivua ei löydy yms.)
--[x] asiakastilillä voit kirjoittaa arvosteluita 1kpl per ravintola
--[x] yritystilillä voit lisätä useita toimipisteitä
--[x] ainoastaan ylläpitäjän tilillä voit harjoittaa sivuston ylläpitoa
--[x] arvioita voi ainoastaa kirjoittaa asiakastilillä
--[x] painamalla hakutulosta pääset ravintolan sivulle
+- [x] etusivu näyttää parhaimman arvosanan saaneet ravintolat
+- [x] etusivu näyttää eniten arvosteluita saaneet ravintolat
+- [x] etusivu näyttää viimeisimmät arvostelut
+- [x] ravintoloita voi etsiä nimellä esim: Kahvila Ruusu
+- [x] ravintoloita voi etsiä kaupungin nimellä esim: Helsinki
+- [x] sovellus antaa ymmärrettäviä virheilmoituksia (ravintolaa ei löydy, sivua ei löydy yms.)
+- [x] asiakastilillä voit kirjoittaa arvosteluita 1kpl per ravintola
+- [x] yritystilillä voit lisätä useita toimipisteitä
+- [x] ainoastaan ylläpitäjän tilillä voit harjoittaa sivuston ylläpitoa
+- [x] arvioita voi ainoastaa kirjoittaa asiakastilillä
+- [x] painamalla hakutulosta pääset ravintolan sivulle
 
 
 ## Miten testaat sovellusta:
